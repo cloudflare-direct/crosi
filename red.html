@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        function redirectToDecodedUrl() {
+            // Get the query string from the URL
+            const queryString = window.location.search;
+            // Parse the query string to get the value of 'url'
+            const urlParams = new URLSearchParams(queryString);
+            const encodedUrl = urlParams.get('url');
+
+            if (encodedUrl) {
+                // Decode the base64-encoded URL
+                const decodedUrl = atob(encodedUrl);
+
+                // Redirect to the decoded URL after 1 second
+                setTimeout(() => {
+                    window.location.href = decodedUrl;
+                }, 1000); // 1000 milliseconds = 1 second
+            } else {
+                // If 'url' parameter is not present, show an error message
+                document.body.innerHTML = "<h1>Error: 'url' parameter is missing.</h1>";
+            }
+        }
+        
+        // Call the function when the script loads
+        window.onload = redirectToDecodedUrl;
+    </script>
+</head>
+<body>
+
+</body>
+</html>
